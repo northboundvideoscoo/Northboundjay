@@ -38,7 +38,7 @@ nav.scrolled{background:rgba(8,18,5,0.96);backdrop-filter:blur(10px);border-bott
 
 /* HERO */
 .hero{width:100%;min-height:100vh;position:relative;overflow:hidden;display:flex;align-items:center;justify-content:flex-start;background:var(--green-deep)}
-.hero-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:1}
+.hero-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:1;opacity:0;transition:opacity 1.5s ease-in-out}.hero-video.active{opacity:1}
 .hero-overlay{position:absolute;inset:0;z-index:2;background:linear-gradient(110deg,rgba(5,15,3,0.82) 0%,rgba(5,15,3,0.4) 60%,rgba(5,15,3,0.15) 100%)}
 .hero-overlay-bottom{position:absolute;bottom:0;left:0;right:0;height:35%;z-index:3;background:linear-gradient(to top,rgba(8,18,5,0.9),transparent)}
 .hero-content{position:relative;z-index:5;padding:9rem 6% 5rem;max-width:780px}
@@ -269,9 +269,8 @@ footer{padding:2rem 3rem;display:flex;align-items:center;justify-content:space-b
 
 <!-- HERO -->
 <section class="hero" id="hero">
-  <video class="hero-video" autoplay muted loop playsinline preload="auto" webkit-playsinline
-    src="https://www.dropbox.com/scl/fi/hjxl8kpbmvgfi6ishg8e5/0622.mp4?rlkey=ll176nrwnwbe7rexovadezrif&st=g1khat1b&raw=1">
-  </video>
+  <video class="hero-video hero-video-a active" autoplay muted playsinline preload="auto" webkit-playsinline src="https://www.dropbox.com/scl/fi/hjxl8kpbmvgfi6ishg8e5/0622.mp4?rlkey=ll176nrwnwbe7rexovadezrif&st=g1khat1b&raw=1"></video>
+  <video class="hero-video hero-video-b" muted playsinline preload="auto" webkit-playsinline src="https://www.dropbox.com/scl/fi/b54tmyt6d61p4t6htcon1/0514.mp4?rlkey=9y5ohrf6no4k7abt2wo7xhpx7&st=ipsjtjne&raw=1"></video>
   <div class="hero-overlay"></div>
   <div class="hero-overlay-bottom"></div>
   <div class="hero-content">
@@ -370,6 +369,16 @@ footer{padding:2rem 3rem;display:flex;align-items:center;justify-content:space-b
         <div class="video-meta">
           <span class="video-title">Cinematic Listing</span>
           <span class="video-loc">Full Production</span>
+        </div>
+      </div>
+      <div class="video-card animate" data-video="https://www.dropbox.com/scl/fi/rksjxeygxrctlw3dezqn7/retreat.mp4?rlkey=ynnar13vr1r635cq974hf8qlk&st=ddasfbcd&raw=1">
+        <div class="video-thumb">
+          <video muted preload="metadata" playsinline src="https://www.dropbox.com/scl/fi/rksjxeygxrctlw3dezqn7/retreat.mp4?rlkey=ynnar13vr1r635cq974hf8qlk&st=ddasfbcd&raw=1#t=0.5"></video>
+          <div class="video-play-overlay"><div class="play-circle"></div></div>
+        </div>
+        <div class="video-meta">
+          <span class="video-title">The Retreat</span>
+          <span class="video-loc">Luxury Estate</span>
         </div>
       </div>
     </div>
@@ -588,6 +597,30 @@ window.addEventListener('scroll',()=>{
 window.addEventListener('load',()=>{
   setTimeout(()=>document.getElementById('loader').classList.add('done'),800);
 });
+
+// Hero video crossfade cycling
+const videoA = document.querySelector('.hero-video-a');
+const videoB = document.querySelector('.hero-video-b');
+let currentVid = 'a';
+function switchHeroVideo(){
+  if(currentVid === 'a'){
+    videoB.currentTime = 0;
+    videoB.play();
+    videoA.classList.remove('active');
+    videoB.classList.add('active');
+    currentVid = 'b';
+  } else {
+    videoA.currentTime = 0;
+    videoA.play();
+    videoB.classList.remove('active');
+    videoA.classList.add('active');
+    currentVid = 'a';
+  }
+}
+if(videoA && videoB){
+  videoA.addEventListener('ended', switchHeroVideo);
+  videoB.addEventListener('ended', switchHeroVideo);
+}
 
 const observer=new IntersectionObserver((entries)=>{
   entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');});
