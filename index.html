@@ -530,19 +530,19 @@ footer{padding:2rem 3rem;display:flex;align-items:center;justify-content:space-b
           </div>
         </div>
       </div>
-      <div class="video-card animate" data-market="miami" data-video="https://www.dropbox.com/scl/fi/sxy6tdfyph8gu5my9iu6n/Luxury-modern-white-villa-with-infinity-pool-aerial-circular-orbit-drone-shot-subject-centered-in-frame-fixed-radius-orbital-path-slow-smooth-angular-movement-around-property-cinematic-color-grading-architectural-photography-style-ultra-realis.mp4?rlkey=vj29tjwfks4bsjs8slkn29zd5&st=80mcadyz&raw=1">
+      <div class="video-card animate" data-market="tci" data-video="https://www.dropbox.com/scl/fi/qs9pgaj1k8xuq5wedtlz5/yes.mp4?rlkey=m6yscemqhc1dbk296k0orbv2n&st=lg31n0fi&raw=1">
         <div class="video-thumb">
-          <video muted preload="metadata" playsinline src="https://www.dropbox.com/scl/fi/sxy6tdfyph8gu5my9iu6n/Luxury-modern-white-villa-with-infinity-pool-aerial-circular-orbit-drone-shot-subject-centered-in-frame-fixed-radius-orbital-path-slow-smooth-angular-movement-around-property-cinematic-color-grading-architectural-photography-style-ultra-realis.mp4?rlkey=vj29tjwfks4bsjs8slkn29zd5&st=80mcadyz&raw=1#t=0.5"></video>
+          <video muted preload="metadata" playsinline src="https://www.dropbox.com/scl/fi/qs9pgaj1k8xuq5wedtlz5/yes.mp4?rlkey=m6yscemqhc1dbk296k0orbv2n&st=lg31n0fi&raw=1#t=0.5"></video>
           <div class="video-play-overlay">
             <div class="play-wrap">
               <div class="play-outer"></div>
               <div class="play-circle"></div>
             </div>
           </div>
-          <div class="video-tag">AERIAL SHOWCASE</div>
+          <div class="video-tag">CINEMATIC</div>
           <div class="video-info">
-            <span class="video-title">Luxury Villa</span>
-            <span class="video-loc">Aerial Showcase</span>
+            <span class="video-title">Luxury Listing</span>
+            <span class="video-loc">Cinematic Production</span>
           </div>
         </div>
       </div>
@@ -876,6 +876,7 @@ stabs.forEach(tab=>{
 document.querySelectorAll('a[href^="#"]').forEach(a=>{
   a.addEventListener('click',e=>{
     if(a.hasAttribute('data-panel'))return; // panel links handled separately
+    if(a.hasAttribute('data-submenu'))return; // submenu links handled separately
     const href=a.getAttribute('href');
     if(href==='#')return;
     const target=document.querySelector(href);
