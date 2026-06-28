@@ -295,14 +295,16 @@ footer{padding:2rem 3rem;display:flex;align-items:center;justify-content:space-b
 /* LOADER */
 #loader{position:fixed;inset:0;background:var(--green-deep);z-index:999999;display:flex;flex-direction:column;align-items:center;justify-content:center;transition:opacity 0.4s ease}
 #loader.done{opacity:0;pointer-events:none}
-.loader-ring-wrap{position:relative;width:190px;height:190px;display:flex;align-items:center;justify-content:center;opacity:0;animation:loaderFadeIn 0.5s 0.1s forwards}
-.loader-spinner{position:absolute;inset:0;width:100%;height:100%;border-radius:50%;background:conic-gradient(from 0deg,transparent 0deg,transparent 230deg,rgba(201,168,76,0.4) 300deg,var(--gold) 355deg,var(--gold) 360deg);-webkit-mask:radial-gradient(farthest-side,transparent calc(100% - 2px),#000 calc(100% - 2px));mask:radial-gradient(farthest-side,transparent calc(100% - 2px),#000 calc(100% - 2px));animation:loaderSpin 1.2s linear infinite}
-.loader-spinner::before{content:"";position:absolute;inset:0;border-radius:50%;border:0.5px solid rgba(201,168,76,0.07)}
-.loader-mark{width:96px;height:auto;filter:drop-shadow(0 2px 12px rgba(0,0,0,0.4))}
-@keyframes loaderSpin{to{transform:rotate(360deg)}}
+.loader-ring-wrap{position:relative;display:flex;align-items:center;justify-content:center;opacity:0;animation:loaderFadeIn 0.6s 0.1s forwards}
+.loader-mark{width:150px;height:auto;filter:drop-shadow(0 2px 14px rgba(0,0,0,0.4))}
+.loader-dots{display:flex;gap:10px;margin-top:2.2rem}
+.loader-dots span{width:7px;height:7px;border-radius:50%;background:var(--gold);opacity:0.25;animation:loaderDot 1.2s ease-in-out infinite}
+.loader-dots span:nth-child(2){animation-delay:0.2s}
+.loader-dots span:nth-child(3){animation-delay:0.4s}
+@keyframes loaderDot{0%,100%{opacity:0.25;transform:translateY(0)}40%{opacity:1;transform:translateY(-5px)}}
 .loader-line-wrap{width:120px;height:0.5px;background:rgba(201,168,76,0.15);margin-top:1.4rem;overflow:hidden}
 .loader-line{height:100%;width:0%;background:var(--gold);animation:loaderDraw 0.4s 0.2s ease forwards}
-.loader-sub{font-size:0.48rem;letter-spacing:0.4em;text-transform:uppercase;color:rgba(74,158,255,0.5);margin-top:1.6rem;opacity:0;animation:loaderFadeIn 0.3s 0.4s forwards}
+.loader-sub{font-size:0.48rem;letter-spacing:0.4em;text-transform:uppercase;color:rgba(74,158,255,0.5);margin-top:1.6rem;opacity:0;animation:loaderFadeIn 0.3s 0.5s forwards}
 @keyframes loaderFadeIn{to{opacity:1}}
 @keyframes loaderDraw{to{width:100%}}
 
@@ -356,9 +358,9 @@ footer{padding:2rem 3rem;display:flex;align-items:center;justify-content:space-b
 <!-- LOADER -->
 <div id="loader">
   <div class="loader-ring-wrap">
-    <div class="loader-spinner"></div>
     <img class="loader-mark" src="logo.png" alt="NorthBound Videos"/>
   </div>
+  <div class="loader-dots"><span></span><span></span><span></span></div>
   <div class="loader-sub">Luxury Real Estate Media</div>
 </div>
 
