@@ -94,22 +94,13 @@ nav.scrolled{background:rgba(5,10,3,0.97);backdrop-filter:blur(10px);border-bott
 .menu-sub-back:hover{border-color:var(--gold);background:rgba(201,168,76,0.08)}
 @media(max-width:740px){.menu-screen{max-width:100%;left:0;margin-left:0}}
 body.menu-open{overflow:hidden}
-/* FRONT PAGE: hero only, no scroll */
-body:not(.panel-active) footer{display:none}
-body:not(.panel-active){overflow:hidden}
-.hero{height:100vh;min-height:100vh}
-/* PANEL SYSTEM */
-#panels{display:none}
-body.panel-active #panels{display:block;position:fixed;inset:0;z-index:150;overflow-y:auto;background:var(--green-deep);-webkit-overflow-scrolling:touch}
-body.panel-active footer,body.panel-active .hero,body.panel-active .marquee-strip{display:none}
-body.panel-active #panels>*{display:none}
-body.panel-active #panels>.panel-show{display:block}
-body.panel-active nav{background:rgba(5,10,3,0.97);backdrop-filter:blur(10px);border-bottom:0.5px solid rgba(201,168,76,0.15)}
-.panel-back{position:fixed;top:1.6rem;left:2.8rem;z-index:160;display:inline-flex;align-items:center;gap:0.6rem;background:transparent;border:0.5px solid rgba(201,168,76,0.3);color:var(--gold);font-family:var(--font-body);font-size:0.58rem;font-weight:500;letter-spacing:0.22em;text-transform:uppercase;padding:0.7rem 1.4rem;cursor:pointer;transition:border-color 0.3s,background 0.3s;opacity:0;visibility:hidden}
-body.panel-active .panel-back{opacity:1;visibility:visible}
-.panel-back:hover{border-color:var(--gold);background:rgba(201,168,76,0.08)}
-body.panel-active #panels>.panel-show{min-height:100vh;padding-top:5rem;animation:panelFade 0.6s ease both}
-@keyframes panelFade{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+/* SCROLL LAYOUT: sections flow normally down the page */
+html{scroll-behavior:smooth}
+.hero{min-height:100vh}
+#panels{display:block}
+.panel-back{display:none}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;transition:background 0.3s,backdrop-filter 0.3s,border-color 0.3s}
+nav.scrolled{background:rgba(5,10,3,0.92);backdrop-filter:blur(12px);border-bottom:0.5px solid rgba(201,168,76,0.12)}
 .nav-logo{text-align:center}
 .nav-logo-main{font-family:var(--font-display);font-size:1.55rem;font-weight:400;letter-spacing:0.5em;text-transform:uppercase;color:var(--white);line-height:1}
 .nav-logo-sub{font-size:0.55rem;letter-spacing:0.62em;text-transform:uppercase;color:rgba(201,168,76,0.55);margin-top:6px}
@@ -390,7 +381,7 @@ footer{padding:2rem 3rem;display:flex;align-items:center;justify-content:space-b
       <div class="menu-brand-sub">Video.co</div>
     </div>
     <nav class="menu-links">
-      <a href="#portfolio" class="menu-link" data-submenu="portfolio"><span class="menu-link-num">01</span>View Portfolio<span class="menu-link-arrow">&#8594;</span></a>
+      <a href="#portfolio" class="menu-link" data-panel="portfolio"><span class="menu-link-num">01</span>View Portfolio</a>
       <a href="#deliver" class="menu-link" data-panel="deliver"><span class="menu-link-num">02</span>Every Shot, Every Detail</a>
       <a href="#how" class="menu-link" data-panel="how"><span class="menu-link-num">03</span>The Process</a>
       <a href="#reviews" class="menu-link" data-panel="reviews"><span class="menu-link-num">04</span>Reviews</a>
@@ -403,26 +394,9 @@ footer{padding:2rem 3rem;display:flex;align-items:center;justify-content:space-b
       <span class="menu-overlay-tag">Luxury Real Estate Media &mdash; Worldwide</span>
     </div>
   </div>
-
-  <!-- PORTFOLIO SUBMENU -->
-  <div class="menu-overlay-inner menu-screen menu-screen-portfolio" id="menuScreenPortfolio">
-    <button class="menu-sub-back" data-submenu-back>&#8592; Menu</button>
-    <div class="menu-overlay-brand">
-      <div class="menu-brand-sub" style="color:var(--blue)">Our Work</div>
-      <div class="menu-brand-main" style="font-size:1.1rem;margin-top:6px">Portfolio</div>
-    </div>
-    <nav class="menu-links">
-      <a href="#portfolio" class="menu-link" data-panel="portfolio" data-market="all"><span class="menu-link-num">&#10022;</span>All Work</a>
-    </nav>
-    <div class="menu-overlay-footer">
-      <a href="#booking" class="menu-cta" data-panel="booking">Book a Free Call &#8599;</a>
-      <span class="menu-overlay-tag">Luxury Real Estate Media &mdash; Worldwide</span>
-    </div>
-  </div>
 </div>
 
-<!-- BACK TO HOME (shown when a panel is open) -->
-<button class="panel-back" id="panelBack">&#8592; Home</button>
+
 
 <!-- HERO -->
 <section class="hero" id="hero">
@@ -896,64 +870,22 @@ function closeMenu(){menuOverlay.classList.remove('open');document.body.classLis
 if(menuToggle)menuToggle.addEventListener('click',openMenu);
 if(menuClose)menuClose.addEventListener('click',closeMenu);
 
-/* SUBMENU SLIDE */
-document.querySelectorAll('[data-submenu]').forEach(el=>{
-  el.addEventListener('click',e=>{e.preventDefault();menuOverlay.classList.add('show-portfolio');});
-});
-document.querySelectorAll('[data-submenu-back]').forEach(el=>{
-  el.addEventListener('click',e=>{e.preventDefault();menuOverlay.classList.remove('show-portfolio');});
-});
-
-/* PANEL SYSTEM */
-const panelsWrap=document.getElementById('panels');
-const panelBack=document.getElementById('panelBack');
-function showPanel(id,market){
-  const target=document.getElementById(id);
-  if(!target)return;
-  // hide all panel children, show only target
-  [...panelsWrap.children].forEach(c=>c.classList.remove('panel-show'));
-  target.classList.add('panel-show');
-  document.body.classList.add('panel-active');
-  closeMenu();
-  panelsWrap.scrollTop=0;
-  if(id==='portfolio')filterPortfolio(market);
-  // reveal any scroll-animated elements inside the panel
-  target.querySelectorAll('.animate').forEach(el=>el.classList.add('visible'));
-}
-function hidePanel(){
-  document.body.classList.remove('panel-active');
-  [...panelsWrap.children].forEach(c=>c.classList.remove('panel-show'));
-}
-document.querySelectorAll('[data-panel]').forEach(el=>{
-  el.addEventListener('click',e=>{e.preventDefault();
-    const market=el.getAttribute('data-market');
-    showPanel(el.getAttribute('data-panel'),market);
+/* MENU LINKS → smooth scroll to section, then close menu */
+document.querySelectorAll('[data-panel],[data-submenu]').forEach(el=>{
+  el.addEventListener('click',e=>{
+    e.preventDefault();
+    const id=el.getAttribute('data-panel')||el.getAttribute('data-submenu');
+    const target=document.getElementById(id);
+    closeMenu();
+    if(target){
+      setTimeout(()=>{target.scrollIntoView({behavior:'smooth'});},250);
+      target.querySelectorAll('.animate').forEach(a=>a.classList.add('visible'));
+    }
   });
 });
 
-function filterPortfolio(market){
-  const cards=document.querySelectorAll('#portfolio .video-card');
-  const titleEl=document.querySelector('#portfolio .section-title');
-  const labels={miami:'Miami',toronto:'Toronto',tci:'Turks &amp; Caicos'};
-  let shown=0;
-  cards.forEach(c=>{
-    const m=c.getAttribute('data-market');
-    if(!market||market==='all'||m===market){c.style.display='';shown++;}
-    else c.style.display='none';
-  });
-  if(titleEl){
-    if(market&&market!=='all'&&labels[market])titleEl.innerHTML=labels[market]+' <em>Luxury Video</em>';
-    else titleEl.innerHTML='Cinematic <em>Portfolio</em>';
-  }
-  // if a market has no videos yet, show all as fallback
-  if(shown===0){cards.forEach(c=>c.style.display='');if(titleEl)titleEl.innerHTML='Cinematic <em>Portfolio</em>';}
-}
-if(panelBack)panelBack.addEventListener('click',hidePanel);
 document.addEventListener('keydown',e=>{
-  if(e.key==='Escape'){
-    if(menuOverlay.classList.contains('open'))closeMenu();
-    else if(document.body.classList.contains('panel-active'))hidePanel();
-  }
+  if(e.key==='Escape'&&menuOverlay.classList.contains('open'))closeMenu();
 });
 
 function handleSubmit(e){
