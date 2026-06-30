@@ -12,12 +12,15 @@
 <meta property="og:image" content="https://northboundvideos.co/og-image.png"/>
 <meta property="og:url" content="https://northboundvideos.co"/>
 <meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:title" content="NorthBound Videos.co — Luxury Real Estate Media"/>
+<meta name="twitter:description" content="Cinematic real estate video built from your listing photos. No on-site shoot required."/>
 <meta name="twitter:image" content="https://northboundvideos.co/og-image.png"/>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet"/>
 <style>
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
 :root{
   --gold:#C9A84C;--gold-light:#E8C97A;
+  --cream:#D8CBA8;
   --white:#FAF8F3;--black:#080808;
   --green-dark:#0a1208;--green-mid:#0f1a0a;--green-deep:#071005;
   --off-black:#0d1209;--charcoal:#151f10;
@@ -76,10 +79,10 @@ nav.scrolled{background:rgba(5,10,3,0.97);backdrop-filter:blur(10px);border-bott
 .menu-overlay.open .menu-link:nth-child(6){transition:opacity 0.5s 0.4s,transform 0.5s 0.4s,color 0.3s,padding-left 0.3s}
 .menu-overlay.open .menu-link:nth-child(7){transition:opacity 0.5s 0.45s,transform 0.5s 0.45s,color 0.3s,padding-left 0.3s}
 .menu-link:hover{color:var(--gold);padding-left:1rem}
-.menu-link-num{font-family:var(--font-body);font-size:0.55rem;letter-spacing:0.2em;color:var(--gold);opacity:0.6;font-weight:500;min-width:22px}
+.menu-link-num{font-family:var(--font-body);font-size:0.55rem;letter-spacing:0.2em;color:var(--cream);opacity:0.45;font-weight:500;min-width:22px}
 .menu-overlay-footer{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1.2rem;margin-top:1rem;opacity:0;transition:opacity 0.6s 0.5s}
 .menu-overlay.open .menu-overlay-footer{opacity:1}
-.menu-cta{font-size:0.6rem;font-weight:500;letter-spacing:0.22em;text-transform:uppercase;color:var(--green-deep);background:var(--gold);padding:0.9rem 2rem;text-decoration:none;transition:background 0.3s}
+.menu-cta{font-size:0.6rem;font-weight:600;letter-spacing:0.22em;text-transform:uppercase;color:#0a0a0a;background:var(--gold);padding:0.9rem 2rem;text-decoration:none;transition:background 0.3s}
 .menu-cta:hover{background:var(--gold-light)}
 .menu-overlay-tag{font-size:0.52rem;letter-spacing:0.3em;text-transform:uppercase;color:rgba(255,255,255,0.4)}
 /* MENU SCREENS (main + submenu slide) */
@@ -102,10 +105,11 @@ html{scroll-behavior:smooth}
 nav{position:fixed;top:0;left:0;right:0;z-index:100;transition:background 0.3s,backdrop-filter 0.3s,border-color 0.3s}
 nav.scrolled{background:rgba(5,10,3,0.92);backdrop-filter:blur(12px);border-bottom:0.5px solid rgba(201,168,76,0.12)}
 .nav-logo{text-align:center}
-.nav-logo-main{font-family:var(--font-display);font-size:1.55rem;font-weight:400;letter-spacing:0.5em;text-transform:uppercase;color:var(--white);line-height:1}
-.nav-logo-sub{font-size:0.55rem;letter-spacing:0.62em;text-transform:uppercase;color:rgba(201,168,76,0.55);margin-top:6px}
+.nav-logo-main{font-family:var(--font-display);font-size:1.3rem;font-weight:400;letter-spacing:0.3em;text-transform:uppercase;color:var(--white);line-height:1;display:flex;align-items:center;gap:0.5em}
+.nav-logo-dot{color:rgba(201,168,76,0.6);font-size:0.8em}
+.nav-logo-co{font-size:0.62em;letter-spacing:0.35em;color:rgba(201,168,76,0.7)}
 .nav-right{display:flex;justify-content:flex-end}
-.book-btn{font-size:0.58rem;font-weight:500;letter-spacing:0.22em;text-transform:uppercase;color:var(--green-deep);background:var(--gold);padding:0.7rem 1.6rem;text-decoration:none;display:inline-flex;align-items:center;gap:0.6rem;transition:background 0.3s}
+.book-btn{font-size:0.58rem;font-weight:600;letter-spacing:0.22em;text-transform:uppercase;color:#0a0a0a;background:var(--gold);padding:0.7rem 1.6rem;text-decoration:none;display:inline-flex;align-items:center;gap:0.6rem;transition:background 0.3s}
 .book-btn:hover{background:var(--gold-light)}
 
 /* HERO */
@@ -128,9 +132,12 @@ nav.scrolled{background:rgba(5,10,3,0.92);backdrop-filter:blur(12px);border-bott
 .hero-sub{font-size:1.15rem;color:rgba(255,255,255,0.78);line-height:1.7;margin-bottom:0.9rem;max-width:560px;animation:fadeUp 1s 1.2s both}
 .hero-price{font-family:var(--font-display);font-size:clamp(2.1rem,4vw,3.2rem);font-weight:300;color:var(--gold);margin-bottom:2rem;animation:fadeUp 1s 1.3s both;letter-spacing:0.05em}
 .hero-ctas{display:flex;gap:1rem;flex-wrap:wrap;animation:fadeUp 1s 1.4s both}
-.cta-primary{font-size:0.65rem;font-weight:500;letter-spacing:0.22em;text-transform:uppercase;color:var(--green-deep);background:var(--gold);padding:1.1rem 2.4rem;text-decoration:none;display:inline-flex;align-items:center;gap:0.6rem;transition:background 0.3s,transform 0.2s;border:none;cursor:pointer;font-family:var(--font-body)}
+.cta-primary{font-size:0.65rem;font-weight:600;letter-spacing:0.22em;text-transform:uppercase;color:#0a0a0a;background:var(--gold);padding:1.1rem 2.4rem;text-decoration:none;display:inline-flex;align-items:center;gap:0.6rem;transition:background 0.3s,transform 0.2s;border:none;cursor:pointer;font-family:var(--font-body)}
 .cta-primary:hover{background:var(--gold-light);transform:translateY(-2px)}
-.cta-secondary{font-size:0.65rem;font-weight:500;letter-spacing:0.22em;text-transform:uppercase;color:var(--white);background:transparent;padding:1.1rem 2.4rem;text-decoration:none;display:inline-flex;align-items:center;gap:0.6rem;border:0.5px solid rgba(255,255,255,0.35);transition:border-color 0.3s,color 0.3s}
+.cta-secondary{font-size:0.65rem;font-weight:600;letter-spacing:0.22em;text-transform:uppercase;color:var(--white);background:transparent;padding:1.1rem 2.4rem;text-decoration:none;display:inline-flex;align-items:center;gap:0.6rem;border:1.5px solid rgba(255,255,255,0.5);transition:border-color 0.3s,color 0.3s,background 0.3s}
+.cta-secondary:hover{border-color:var(--white);background:rgba(255,255,255,0.06)}
+.booking-trust{display:flex;flex-wrap:wrap;justify-content:center;gap:2rem;margin-top:3rem}
+.booking-trust span{font-size:0.6rem;letter-spacing:0.18em;text-transform:uppercase;color:rgba(216,203,168,0.5)}
 .cta-secondary:hover{border-color:var(--gold);color:var(--gold)}
 
 /* MARQUEE */
@@ -165,6 +172,9 @@ nav.scrolled{background:rgba(5,10,3,0.92);backdrop-filter:blur(12px);border-bott
 .video-card{cursor:pointer;position:relative;display:block}
 .video-card:first-child{grid-column:1/-1}
 .video-thumb{width:100%;aspect-ratio:16/9;background:var(--charcoal);position:relative;overflow:hidden;border:0.5px solid rgba(201,168,76,0.12)}
+.video-thumb::before,.svc-video-wrap::before{content:"";position:absolute;inset:0;z-index:0;background:linear-gradient(100deg,rgba(255,255,255,0.01) 30%,rgba(201,168,76,0.06) 50%,rgba(255,255,255,0.01) 70%);background-size:200% 100%;animation:shimmer 2.2s infinite}
+.video-thumb video,.video-thumb img,.svc-video-wrap video{position:relative;z-index:1}
+@keyframes shimmer{0%{background-position:200% 0}100%{background-position:-200% 0}}
 .video-card:first-child .video-thumb{aspect-ratio:16/6}
 .video-thumb video{width:100%;height:100%;object-fit:cover;display:block;pointer-events:none}
 .video-play-overlay{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(5,12,3,0.45);transition:background 0.3s;z-index:2}
@@ -271,21 +281,26 @@ nav.scrolled{background:rgba(5,10,3,0.92);backdrop-filter:blur(12px);border-bott
 .form-group select option{background:#0d1209;color:var(--white)}
 .form-group textarea{resize:none;height:80px}
 .form-submit{display:flex;justify-content:center;margin-top:1rem}
-.submit-btn{font-size:0.62rem;font-weight:500;letter-spacing:0.25em;text-transform:uppercase;color:var(--green-deep);background:var(--gold);padding:1rem 3rem;border:none;cursor:pointer;transition:background 0.3s;font-family:var(--font-body)}
+.submit-btn{font-size:0.62rem;font-weight:600;letter-spacing:0.25em;text-transform:uppercase;color:#0a0a0a;background:var(--gold);padding:1rem 3rem;border:none;cursor:pointer;transition:background 0.3s;font-family:var(--font-body)}
 .submit-btn:hover{background:var(--gold-light)}
 
 /* FOOTER */
-footer{padding:2rem 3rem;display:flex;align-items:center;justify-content:space-between;border-top:0.5px solid rgba(255,255,255,0.05);background:rgba(3,8,4,0.99);position:relative;z-index:1}
+footer{padding:4rem 3rem 3rem;display:flex;flex-direction:column;align-items:center;gap:1.8rem;border-top:0.5px solid rgba(201,168,76,0.1);background:rgba(3,8,4,0.99);position:relative;z-index:1;text-align:center}
+.footer-brand{display:flex;flex-direction:column;align-items:center;gap:0.9rem}
+.footer-mark{width:90px;height:auto;opacity:0.85}
+.footer-email{font-size:0.7rem;letter-spacing:0.15em;color:rgba(201,168,76,0.7);text-decoration:none;transition:color 0.3s}
+.footer-email:hover{color:var(--gold)}
 .footer-logo{font-family:var(--font-display);font-size:0.9rem;letter-spacing:0.3em;text-transform:uppercase;color:rgba(255,255,255,0.35)}
-.footer-powered{font-size:0.48rem;letter-spacing:0.3em;text-transform:uppercase;color:rgba(74,158,255,0.45)}
-.footer-copy{font-size:0.55rem;letter-spacing:0.15em;color:rgba(255,255,255,0.18)}
-.footer-links{display:flex;gap:1.5rem;align-items:center}
+.footer-powered{font-size:0.5rem;letter-spacing:0.3em;text-transform:uppercase;color:rgba(216,203,168,0.4)}
+.footer-copy{font-size:0.55rem;letter-spacing:0.15em;color:rgba(255,255,255,0.2)}
+.footer-links{display:flex;gap:1.8rem;align-items:center;flex-wrap:wrap;justify-content:center}
 .footer-links a{font-size:0.55rem;letter-spacing:0.2em;text-transform:uppercase;color:rgba(255,255,255,0.28);text-decoration:none;transition:color 0.3s}
 .footer-links a:hover{color:var(--gold)}
 
 /* WHATSAPP */
-.whatsapp-btn{position:fixed;bottom:2rem;right:2rem;z-index:999;width:56px;height:56px;background:#25D366;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(37,211,102,0.4);transition:transform 0.3s,box-shadow 0.3s;text-decoration:none}
-.whatsapp-btn:hover{transform:scale(1.1);box-shadow:0 6px 25px rgba(37,211,102,0.6)}
+.whatsapp-btn{position:fixed;bottom:2rem;right:2rem;z-index:999;width:52px;height:52px;background:rgba(7,16,5,0.92);border:0.5px solid rgba(201,168,76,0.35);border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(0,0,0,0.4);transition:transform 0.3s,border-color 0.3s,background 0.3s;text-decoration:none;backdrop-filter:blur(6px)}
+.whatsapp-btn:hover{transform:scale(1.08);border-color:var(--gold);background:rgba(201,168,76,0.12)}
+.whatsapp-btn svg{width:24px;height:24px;fill:var(--gold)}
 
 /* LOADER */
 #loader{position:fixed;inset:0;background:var(--green-deep);z-index:999999;display:flex;flex-direction:column;align-items:center;justify-content:center;transition:opacity 0.4s ease}
@@ -312,8 +327,7 @@ footer{padding:2rem 3rem;display:flex;align-items:center;justify-content:space-b
 @media(max-width:768px){
   nav{padding:1.2rem 1.5rem}
   .nav-link{display:none}
-  .nav-logo-main{font-size:1.05rem;letter-spacing:0.3em}
-  .nav-logo-sub{font-size:0.45rem}
+  .nav-logo-main{font-size:0.95rem;letter-spacing:0.2em}
   .book-btn{padding:0.55rem 1rem;font-size:0.52rem}
   .hero-content{padding:5rem 6% 4rem}
   .hero-h1 .line1,.hero-h1 .line2{font-size:2.6rem}
@@ -363,8 +377,7 @@ footer{padding:2rem 3rem;display:flex;align-items:center;justify-content:space-b
 <nav id="navbar">
   <div class="nav-left"></div>
   <div class="nav-logo">
-    <div class="nav-logo-main">NorthBound</div>
-    <div class="nav-logo-sub">Video.co</div>
+    <div class="nav-logo-main">NorthBound<span class="nav-logo-dot">·</span><span class="nav-logo-co">Videos.co</span></div>
   </div>
   <div class="nav-right">
     <button class="menu-toggle" id="menuToggle" aria-label="Open menu">
@@ -505,7 +518,7 @@ footer{padding:2rem 3rem;display:flex;align-items:center;justify-content:space-b
           <div class="video-tag">FULL PRODUCTION</div>
           <div class="video-info">
             <span class="video-title">The Retreat</span>
-            <span class="video-loc">Luxury Villa</span>
+            <span class="video-loc">Villa &middot; Turks &amp; Caicos</span>
           </div>
         </div>
       </div>
@@ -520,8 +533,8 @@ footer{padding:2rem 3rem;display:flex;align-items:center;justify-content:space-b
           </div>
           <div class="video-tag">CINEMATIC</div>
           <div class="video-info">
-            <span class="video-title">Luxury Listing</span>
-            <span class="video-loc">Cinematic Production</span>
+            <span class="video-title">Bayfront Residence</span>
+            <span class="video-loc">Penthouse &middot; Miami</span>
           </div>
         </div>
       </div>
@@ -536,8 +549,8 @@ footer{padding:2rem 3rem;display:flex;align-items:center;justify-content:space-b
           </div>
           <div class="video-tag">CINEMATIC</div>
           <div class="video-info">
-            <span class="video-title">Cinematic Listing</span>
-            <span class="video-loc">Full Production</span>
+            <span class="video-title">Skyline Penthouse</span>
+            <span class="video-loc">Condo &middot; Toronto</span>
           </div>
         </div>
       </div>
@@ -619,7 +632,7 @@ footer{padding:2rem 3rem;display:flex;align-items:center;justify-content:space-b
         </div>
         <div class="svc-actions">
           <a href="#booking" class="cta-primary" style="font-size:0.58rem;padding:0.9rem 2rem">Book Now &#8599;</a>
-          <a href="#portfolio" class="svc-link">See Portfolio &#8594;</a>
+          <a href="#portfolio" class="svc-link">See Portfolio &#8599;</a>
         </div>
       </div>
     </div>
@@ -696,7 +709,7 @@ footer{padding:2rem 3rem;display:flex;align-items:center;justify-content:space-b
       <span class="team-addon-label">Add-On Service</span>
       <div class="team-addon-title">Website Video Integration</div>
       <div class="team-addon-body">Our integration engineer can embed your finished NorthBound video directly onto your property listing website — no technical knowledge required on your end. Pricing is customized based on your website platform and number of listings.</div>
-      <a href="mailto:hello@northboundvideos.co?subject=Website%20Integration%20Enquiry" class="team-addon-cta">Enquire About Integration &#8594;</a>
+      <a href="mailto:hello@northboundvideos.co?subject=Website%20Integration%20Enquiry" class="team-addon-cta">Enquire About Integration &#8599;</a>
     </div>
   </div>
 </section>
@@ -712,6 +725,11 @@ footer{padding:2rem 3rem;display:flex;align-items:center;justify-content:space-b
     <div class="booking-cta-btns animate">
       <a href="mailto:hello@northboundvideos.co?subject=Booking%20Enquiry" class="cta-primary">Email Us &#8599;</a>
       <a href="#contact" class="cta-secondary">Send a Message &#8595;</a>
+    </div>
+    <div class="booking-trust animate">
+      <span>&#10022; No on-site shoot required</span>
+      <span>&#10022; 4K cinematic delivery</span>
+      <span>&#10022; Built from your listing photos</span>
     </div>
   </div>
 </section>
@@ -768,13 +786,14 @@ footer{padding:2rem 3rem;display:flex;align-items:center;justify-content:space-b
 
 <!-- FOOTER -->
 <footer>
-  <div>
-    <div class="footer-logo">NorthBound Videos.co</div>
+  <div class="footer-brand">
+    <img src="logo.png" alt="NorthBound Videos.co" class="footer-mark"/>
     <div class="footer-powered">Luxury Real Estate Media — Worldwide</div>
+    <a href="mailto:hello@northboundvideos.co" class="footer-email">hello@northboundvideos.co</a>
   </div>
-  <div class="footer-copy">&copy; 2026 NorthBound Videos.co. All rights reserved.</div>
   <div class="footer-links">
     <a href="#portfolio">Portfolio</a>
+    <a href="#how">Process</a>
     <a href="#team">Team</a>
     <a href="#booking">Book</a>
     <a href="mailto:hello@northboundvideos.co">Contact</a>
@@ -782,11 +801,12 @@ footer{padding:2rem 3rem;display:flex;align-items:center;justify-content:space-b
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.5" fill="currentColor" stroke="none"/></svg>
     </a>
   </div>
+  <div class="footer-copy">&copy; 2026 NorthBound Videos.co. All rights reserved.</div>
 </footer>
 
 <!-- WHATSAPP FAB -->
 <a href="https://wa.me/18255586775" class="whatsapp-btn" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
-  <svg width="28" height="28" viewBox="0 0 24 24" fill="white">
+  <svg width="24" height="24" viewBox="0 0 24 24">
     <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
   </svg>
 </a>
@@ -877,7 +897,7 @@ function closeMenu(){menuOverlay.classList.remove('open');document.body.classLis
 if(menuToggle)menuToggle.addEventListener('click',openMenu);
 if(menuClose)menuClose.addEventListener('click',closeMenu);
 
-/* MENU LINKS → smooth scroll to section, then close menu */
+/* MENU LINKS &#8599; smooth scroll to section, then close menu */
 document.querySelectorAll('[data-panel],[data-submenu]').forEach(el=>{
   el.addEventListener('click',e=>{
     e.preventDefault();
