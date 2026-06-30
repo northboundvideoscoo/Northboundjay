@@ -105,9 +105,8 @@ html{scroll-behavior:smooth}
 nav{position:fixed;top:0;left:0;right:0;z-index:100;transition:background 0.3s,backdrop-filter 0.3s,border-color 0.3s}
 nav.scrolled{background:rgba(5,10,3,0.92);backdrop-filter:blur(12px);border-bottom:0.5px solid rgba(201,168,76,0.12)}
 .nav-logo{text-align:center}
-.nav-logo-main{font-family:var(--font-display);font-size:1.3rem;font-weight:400;letter-spacing:0.3em;text-transform:uppercase;color:var(--white);line-height:1;display:flex;align-items:center;gap:0.5em}
-.nav-logo-dot{color:rgba(201,168,76,0.6);font-size:0.8em}
-.nav-logo-co{font-size:0.62em;letter-spacing:0.35em;color:rgba(201,168,76,0.7)}
+.nav-logo-main{font-family:var(--font-display);font-size:1.3rem;font-weight:400;letter-spacing:0.3em;text-transform:uppercase;color:var(--white);line-height:1;display:inline-flex;align-items:baseline}
+.nav-logo-co{color:rgba(201,168,76,0.85)}
 .nav-right{display:flex;justify-content:flex-end}
 .book-btn{font-size:0.58rem;font-weight:600;letter-spacing:0.22em;text-transform:uppercase;color:#0a0a0a;background:var(--gold);padding:0.7rem 1.6rem;text-decoration:none;display:inline-flex;align-items:center;gap:0.6rem;transition:background 0.3s}
 .book-btn:hover{background:var(--gold-light)}
@@ -377,7 +376,7 @@ footer{padding:4rem 3rem 3rem;display:flex;flex-direction:column;align-items:cen
 <nav id="navbar">
   <div class="nav-left"></div>
   <div class="nav-logo">
-    <div class="nav-logo-main">NorthBound<span class="nav-logo-dot">·</span><span class="nav-logo-co">Videos.co</span></div>
+    <div class="nav-logo-main">NorthBound<span class="nav-logo-co">Videos.co</span></div>
   </div>
   <div class="nav-right">
     <button class="menu-toggle" id="menuToggle" aria-label="Open menu">
