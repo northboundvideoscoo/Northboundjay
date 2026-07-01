@@ -167,14 +167,20 @@ nav.scrolled{background:rgba(5,10,3,0.92);backdrop-filter:blur(12px);border-bott
 
 /* PORTFOLIO */
 .portfolio-section{background:var(--green-dark);border-top:0.5px solid rgba(255,255,255,0.04)}
-.portfolio-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-top:3rem}
+.portfolio-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1.5rem;margin-top:3rem}
+.portfolio-filters{display:flex;flex-wrap:wrap;justify-content:center;gap:0.8rem;margin-top:2.5rem}
+.filter-pill{font-family:var(--font-body);font-size:0.62rem;font-weight:600;letter-spacing:0.16em;text-transform:uppercase;color:rgba(255,255,255,0.55);background:transparent;border:0.5px solid rgba(201,168,76,0.25);padding:0.7rem 1.5rem;cursor:pointer;transition:all 0.3s;white-space:nowrap}
+.filter-pill:hover{border-color:rgba(201,168,76,0.6);color:var(--white)}
+.filter-pill.active{background:var(--gold);border-color:var(--gold);color:#0a0a0a}
+.video-card{transition:opacity 0.4s,transform 0.4s}
+.video-card.hidden{display:none}
+.portfolio-empty{display:none;text-align:center;color:rgba(255,255,255,0.4);font-size:0.85rem;margin-top:3rem;font-style:italic}
+.portfolio-empty.show{display:block}
 .video-card{cursor:pointer;position:relative;display:block}
-.video-card:first-child{grid-column:1/-1}
 .video-thumb{width:100%;aspect-ratio:16/9;background:var(--charcoal);position:relative;overflow:hidden;border:0.5px solid rgba(201,168,76,0.12)}
 .video-thumb::before,.svc-video-wrap::before{content:"";position:absolute;inset:0;z-index:0;background:linear-gradient(100deg,rgba(255,255,255,0.01) 30%,rgba(201,168,76,0.06) 50%,rgba(255,255,255,0.01) 70%);background-size:200% 100%;animation:shimmer 2.2s infinite}
 .video-thumb video,.video-thumb img,.svc-video-wrap video{position:relative;z-index:1}
 @keyframes shimmer{0%{background-position:200% 0}100%{background-position:-200% 0}}
-.video-card:first-child .video-thumb{aspect-ratio:16/6}
 .video-thumb video{width:100%;height:100%;object-fit:cover;display:block;pointer-events:none}
 .video-play-overlay{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(5,12,3,0.45);transition:background 0.3s;z-index:2}
 .video-card:hover .video-play-overlay{background:rgba(5,12,3,0.15)}
@@ -323,6 +329,9 @@ footer{padding:4rem 3rem 3rem;display:flex;flex-direction:column;align-items:cen
 @keyframes fadeUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
 
 /* MOBILE */
+@media(max-width:1024px) and (min-width:769px){
+  .portfolio-grid{grid-template-columns:1fr 1fr}
+}
 @media(max-width:768px){
   nav{padding:1.2rem 1.5rem}
   .nav-link{display:none}
@@ -338,7 +347,7 @@ footer{padding:4rem 3rem 3rem;display:flex;flex-direction:column;align-items:cen
   .val-col{padding:2rem 1rem 1.5rem 0;border-right:none;border-bottom:0.5px solid rgba(255,255,255,0.05)}
   .val-col:nth-child(odd){border-right:0.5px solid rgba(255,255,255,0.05)}
   .portfolio-grid{grid-template-columns:1fr}
-  .video-card:first-child{grid-column:auto}
+  .filter-pill{font-size:0.56rem;padding:0.6rem 1.1rem}
   .how-grid{grid-template-columns:1fr;gap:1rem}
   .team-grid{grid-template-columns:1fr}
   .why-grid{grid-template-columns:1fr;gap:1.2rem}
@@ -488,7 +497,14 @@ footer{padding:4rem 3rem 3rem;display:flex;flex-direction:column;align-items:cen
       <h2 class="section-title">Cinematic <em>Portfolio</em></h2>
       <div class="gold-line"></div>
     </div>
-    <div class="portfolio-grid">
+    <div class="portfolio-filters animate">
+      <button class="filter-pill active" data-filter="all">All Work</button>
+      <button class="filter-pill" data-filter="nyc">New York</button>
+      <button class="filter-pill" data-filter="tci">Turks &amp; Caicos</button>
+      <button class="filter-pill" data-filter="miami">Miami</button>
+      <button class="filter-pill" data-filter="toronto">Toronto</button>
+    </div>
+    <div class="portfolio-grid" id="portfolioGrid">
       <div class="video-card animate" data-market="nyc" data-video="https://www.dropbox.com/scl/fi/y367ial89sp8yt4x7he9o/145-Hudson-St-Penthouse-New-York-Luxury-Video?rlkey=8e03fs9p67jttqv2od924it8y&st=94l4jqak&raw=1">
         <div class="video-thumb">
           <video muted preload="metadata" playsinline src="https://www.dropbox.com/scl/fi/y367ial89sp8yt4x7he9o/145-Hudson-St-Penthouse-New-York-Luxury-Video?rlkey=8e03fs9p67jttqv2od924it8y&st=94l4jqak&raw=1#t=0.5"></video>
@@ -500,8 +516,8 @@ footer{padding:4rem 3rem 3rem;display:flex;flex-direction:column;align-items:cen
           </div>
           <div class="video-tag">4K &middot; FLAGSHIP</div>
           <div class="video-info">
-            <span class="video-title">145 Hudson St Penthouse</span>
-            <span class="video-loc">Penthouse &middot; New York</span>
+            <span class="video-title">145 Hudson St, Penthouse</span>
+            <span class="video-loc">New York, NY</span>
           </div>
         </div>
       </div>
@@ -517,7 +533,7 @@ footer{padding:4rem 3rem 3rem;display:flex;flex-direction:column;align-items:cen
           <div class="video-tag">4K &middot; CINEMATIC</div>
           <div class="video-info">
             <span class="video-title">Alizée Villa</span>
-            <span class="video-loc">Luxury Estate &middot; Caribbean</span>
+            <span class="video-loc">Turks &amp; Caicos</span>
           </div>
         </div>
       </div>
@@ -533,11 +549,11 @@ footer{padding:4rem 3rem 3rem;display:flex;flex-direction:column;align-items:cen
           <div class="video-tag">FULL PRODUCTION</div>
           <div class="video-info">
             <span class="video-title">The Retreat</span>
-            <span class="video-loc">Villa &middot; Turks &amp; Caicos</span>
+            <span class="video-loc">Turks &amp; Caicos</span>
           </div>
         </div>
       </div>
-      <div class="video-card animate" data-market="tci" data-video="https://www.dropbox.com/scl/fi/qs9pgaj1k8xuq5wedtlz5/yes.mp4?rlkey=m6yscemqhc1dbk296k0orbv2n&st=lg31n0fi&raw=1">
+      <div class="video-card animate" data-market="miami" data-video="https://www.dropbox.com/scl/fi/qs9pgaj1k8xuq5wedtlz5/yes.mp4?rlkey=m6yscemqhc1dbk296k0orbv2n&st=lg31n0fi&raw=1">
         <div class="video-thumb">
           <video muted preload="metadata" playsinline src="https://www.dropbox.com/scl/fi/qs9pgaj1k8xuq5wedtlz5/yes.mp4?rlkey=m6yscemqhc1dbk296k0orbv2n&st=lg31n0fi&raw=1#t=0.5"></video>
           <div class="video-play-overlay">
@@ -549,7 +565,7 @@ footer{padding:4rem 3rem 3rem;display:flex;flex-direction:column;align-items:cen
           <div class="video-tag">CINEMATIC</div>
           <div class="video-info">
             <span class="video-title">Bayfront Residence</span>
-            <span class="video-loc">Penthouse &middot; Miami</span>
+            <span class="video-loc">Miami, FL</span>
           </div>
         </div>
       </div>
@@ -565,11 +581,12 @@ footer{padding:4rem 3rem 3rem;display:flex;flex-direction:column;align-items:cen
           <div class="video-tag">CINEMATIC</div>
           <div class="video-info">
             <span class="video-title">Skyline Penthouse</span>
-            <span class="video-loc">Condo &middot; Toronto</span>
+            <span class="video-loc">Toronto, ON</span>
           </div>
         </div>
       </div>
     </div>
+    <p class="portfolio-empty" id="portfolioEmpty">More work from this market coming soon.</p>
   </div>
 </section>
 
@@ -911,6 +928,25 @@ function openMenu(){menuOverlay.classList.add('open');document.body.classList.ad
 function closeMenu(){menuOverlay.classList.remove('open');document.body.classList.remove('menu-open');menuOverlay.classList.remove('show-portfolio');}
 if(menuToggle)menuToggle.addEventListener('click',openMenu);
 if(menuClose)menuClose.addEventListener('click',closeMenu);
+
+/* PORTFOLIO FILTER */
+const filterPills=document.querySelectorAll('.filter-pill');
+const portfolioCards=document.querySelectorAll('#portfolioGrid .video-card');
+const portfolioEmpty=document.getElementById('portfolioEmpty');
+filterPills.forEach(pill=>{
+  pill.addEventListener('click',()=>{
+    filterPills.forEach(p=>p.classList.remove('active'));
+    pill.classList.add('active');
+    const filter=pill.getAttribute('data-filter');
+    let visible=0;
+    portfolioCards.forEach(card=>{
+      const match=filter==='all'||card.getAttribute('data-market')===filter;
+      card.classList.toggle('hidden',!match);
+      if(match)visible++;
+    });
+    portfolioEmpty.classList.toggle('show',visible===0);
+  });
+});
 
 /* MENU LINKS &#8599; smooth scroll to section, then close menu */
 document.querySelectorAll('[data-panel],[data-submenu]').forEach(el=>{
