@@ -843,8 +843,11 @@ window.addEventListener('scroll',()=>{
   document.getElementById('navbar').classList.toggle('scrolled',window.scrollY>60);
 });
 
-window.addEventListener('load',()=>{
-  setTimeout(()=>document.getElementById("loader").classList.add("done"),1500);
+document.addEventListener('DOMContentLoaded',()=>{
+  setTimeout(()=>{
+    const loader=document.getElementById('loader');
+    if(loader)loader.classList.add('done');
+  },600);
 });
 
 const videoA=document.querySelector('.hero-video-a');
