@@ -423,8 +423,8 @@ footer{padding:4rem 3rem 3rem;display:flex;flex-direction:column;align-items:cen
 
 <!-- HERO -->
 <section class="hero" id="hero">
-  <video class="hero-video hero-video-a active" autoplay muted playsinline preload="auto" webkit-playsinline src="https://www.dropbox.com/scl/fi/y367ial89sp8yt4x7he9o/145-Hudson-St-Penthouse-New-York-Luxury-Video?rlkey=8e03fs9p67jttqv2od924it8y&st=94l4jqak&raw=1"></video>
-  <video class="hero-video hero-video-b" muted playsinline preload="auto" webkit-playsinline src="https://www.dropbox.com/scl/fi/b54tmyt6d61p4t6htcon1/0514.mp4?rlkey=9y5ohrf6no4k7abt2wo7xhpx7&st=ipsjtjne&raw=1"></video>
+  <video class="hero-video hero-video-a active" autoplay muted playsinline preload="none" webkit-playsinline src="https://www.dropbox.com/scl/fi/y367ial89sp8yt4x7he9o/145-Hudson-St-Penthouse-New-York-Luxury-Video?rlkey=8e03fs9p67jttqv2od924it8y&st=94l4jqak&raw=1"></video>
+  <video class="hero-video hero-video-b" muted playsinline preload="none" webkit-playsinline src="https://www.dropbox.com/scl/fi/b54tmyt6d61p4t6htcon1/0514.mp4?rlkey=9y5ohrf6no4k7abt2wo7xhpx7&st=ipsjtjne&raw=1"></video>
   <div class="hero-overlay"></div>
   <div class="hero-overlay-bottom"></div>
   <div class="hero-content">
@@ -855,14 +855,22 @@ const videoB=document.querySelector('.hero-video-b');
 let currentVid='a';
 function switchHeroVideo(){
   if(currentVid==='a'){
-    videoB.currentTime=0;videoB.play();
+    videoB.currentTime=0;videoB.play().catch(()=>{});
     videoA.classList.remove('active');videoB.classList.add('active');currentVid='b';
   } else {
-    videoA.currentTime=0;videoA.play();
+    videoA.currentTime=0;videoA.play().catch(()=>{});
     videoB.classList.remove('active');videoA.classList.add('active');currentVid='a';
   }
 }
-if(videoA&&videoB){videoA.addEventListener('ended',switchHeroVideo);videoB.addEventListener('ended',switchHeroVideo);}
+if(videoA){
+  videoA.play().catch(()=>{});
+  videoA.addEventListener('ended',switchHeroVideo);
+  videoA.addEventListener('error',()=>{videoA.classList.remove('active')});
+}
+if(videoB){
+  videoB.addEventListener('ended',switchHeroVideo);
+  videoB.addEventListener('error',()=>{videoB.classList.remove('active')});
+}
 
 const observer=new IntersectionObserver((entries)=>{
   entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');});
