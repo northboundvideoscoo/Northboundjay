@@ -113,7 +113,7 @@ nav.scrolled{background:rgba(5,10,3,0.92);backdrop-filter:blur(12px);border-bott
 
 /* HERO */
 .hero{width:100%;min-height:100vh;position:relative;overflow:hidden;display:flex;align-items:flex-start;justify-content:flex-start;background:var(--green-deep);z-index:1}
-.hero-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:1;opacity:0;transition:opacity 0.8s ease-in-out}
+.hero-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:1;opacity:0;transition:opacity 0.4s ease-in-out}
 .hero-video.active{opacity:1}
 .hero-overlay{position:absolute;inset:0;z-index:2;background:linear-gradient(110deg,rgba(5,15,3,0.88) 0%,rgba(5,15,3,0.45) 60%,rgba(5,15,3,0.15) 100%)}
 .hero-overlay-bottom{position:absolute;bottom:0;left:0;right:0;height:35%;z-index:3;background:linear-gradient(to top,rgba(5,10,3,0.95),transparent)}
@@ -880,6 +880,7 @@ document.addEventListener('DOMContentLoaded',()=>{
 const videoA=document.querySelector('.hero-video-a');
 const videoB=document.querySelector('.hero-video-b');
 let currentVid='a';
+function showVideoA(){videoA.classList.add('active');}
 function switchHeroVideo(){
   if(currentVid==='a'){
     videoB.currentTime=0;
@@ -890,7 +891,11 @@ function switchHeroVideo(){
   }
 }
 if(videoA){
-  videoA.addEventListener('playing',()=>{videoA.classList.add('active');});
+  // Show on canplay (fires earlier than 'playing')
+  videoA.addEventListener('canplay', showVideoA);
+  videoA.addEventListener('playing', showVideoA);
+  // Hard fallback — force visible after 2s no matter what
+  setTimeout(showVideoA, 2000);
   videoA.addEventListener('ended',switchHeroVideo);
   videoA.addEventListener('error',()=>{videoA.classList.remove('active');});
   videoA.play().catch(()=>{});
