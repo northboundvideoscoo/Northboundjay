@@ -880,7 +880,7 @@ document.addEventListener('DOMContentLoaded',()=>{
 const videoA=document.querySelector('.hero-video-a');
 const videoB=document.querySelector('.hero-video-b');
 let currentVid='a';
-function showVideoA(){videoA.classList.add('active');}
+let videoAShown=false;
 function switchHeroVideo(){
   if(currentVid==='a'){
     videoB.currentTime=0;
@@ -891,18 +891,14 @@ function switchHeroVideo(){
   }
 }
 if(videoA){
-  // Show on canplay (fires earlier than 'playing')
-  videoA.addEventListener('canplay', showVideoA);
-  videoA.addEventListener('playing', showVideoA);
-  // Hard fallback — force visible after 2s no matter what
-  setTimeout(showVideoA, 2000);
+  videoA.addEventListener('playing',()=>{
+    if(!videoAShown){videoAShown=true;videoA.classList.add('active');}
+  });
   videoA.addEventListener('ended',switchHeroVideo);
-  videoA.addEventListener('error',()=>{videoA.classList.remove('active');});
   videoA.play().catch(()=>{});
 }
 if(videoB){
   videoB.addEventListener('ended',switchHeroVideo);
-  videoB.addEventListener('error',()=>{videoB.classList.remove('active');});
 }
 
 const observer=new IntersectionObserver((entries)=>{
